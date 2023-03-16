@@ -458,6 +458,37 @@ public function showOrder(){
   
 }
 
+
+
+public function API(){
+  
+  
+  
+  require("utils/protection.php");
+  
+  require_once ("classes/producteDAO.php");
+ 
+ 
+  include_once("utils/API/api.php");
+ 
+  
+}
+
+
+public function reviews(){
+  
+  
+  
+  require("utils/protection.php");
+  
+  require_once ("classes/producteDAO.php");
+ 
+  include ("views/includes/header.php");
+  include_once("assets/js/scriptAPI.js");
+  include ("views/includes/footer.php");
+  
+}
+
 }
 
 

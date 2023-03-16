@@ -284,60 +284,32 @@ require_once ("utils/dataBase.php");
 
         public static function getAllOrderbyUserId($id){
             $con = DataBase::connect();
-            $stmt = $con->prepare("SELECT p.ID_PEDIDO, pr.NOMBRE, u.NOMBRE, p.ESTADO_PEDIDO, prp.CANTIDAD, prp.PRECIO , p.PRECIO, p.FECHA_PEDIDO FROM 
-                                    pedido AS p 
-                                    INNER JOIN pedido_producto AS prp 
-                                    INNER JOIN producto AS pr 
-                                    INNER JOIN usuario AS u ON p.ID_USUARIO = u.ID_USUARIO AND p.ID_PEDIDO = prp.ID_PEDIDO AND prp.ID_PRODUCTO = pr.ID_PRODUCTO where p.ID_USUARIO =$id");
+            $stmt = $con->prepare("SELECT p.ID_PEDIDO,u.NOMBRE, p.ESTADO_PEDIDO, p.PRECIO, p.FECHA_PEDIDO FROM pedido AS p INNER JOIN usuario AS u ON p.ID_USUARIO = u.ID_USUARIO where u.ID_USUARIO =$id");
             //Execute statement 
             $stmt->execute();
             $result=$stmt->get_result();
 
-            $list = "
+            $pedido;
             
-            <tr>
-              <th>Order ID</th>
-              <th>User Name</th>
-              <th>Order Date</th>
-              <th>State of The Order</th>
-              <th>TOTAL Price</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>PRODUCT Price</th>
-            </tr>";
+           $a=0;
             while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
                
 
-                    $list .= "<tr>";
-                    $list .= "<td>".$row['ID_PEDIDO']."</td>";
-                    $list .= "<td>".$row['2']."</td>";
-                    $list .= "<td>".$row['FECHA_PEDIDO']."</td>";
-                    $list .= "<td>".$row['ESTADO_PEDIDO']."</td>";
-                    $list .= "<td>".$row['PRECIO']."€</td>";
-    
-                  
-                       
-                  
-                    
-                       
-                        $list .= "<td>".$row['1']."</td>";
-                        $list .= "<td>".$row['4']."</td>";
-                        $list .= "<td>".$row['5']."€</td>";
-                    $list .= "</tr>";
                    
-                    
-                    
-                      
-                
-
+                $pedido[$a]['ID_PEDIDO']=$row['ID_PEDIDO'];
+                $pedido[$a]['NOMBREUSUARIO']=$row['NOMBRE'];
+                $pedido[$a]['FECHA_PEDIDO']=$row['FECHA_PEDIDO'];
+                $pedido[$a]['ESTADO_PEDIDO']=$row['ESTADO_PEDIDO'];
+                $pedido[$a]['PRECIO']=$row['PRECIO'];
+                $a++;
 
             }
 
             
 
             
-            $list .= "</table>";
-            return $list;
+            
+            return $pedido;
 
             $con->close();
 
