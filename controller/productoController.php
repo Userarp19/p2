@@ -480,6 +480,11 @@ public function reviews(){
   
   
   require("utils/protection.php");
+  if(isset($_SESSION['compra'])){
+    $orderCounts = count($_SESSION['compra']);
+  }else{
+    $orderCounts = '';
+  }
   
   require_once ("classes/producteDAO.php");
  
