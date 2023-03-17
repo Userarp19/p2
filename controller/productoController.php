@@ -489,7 +489,7 @@ public function reviews(){
   require_once ("classes/producteDAO.php");
  
   include ("views/includes/header.php");
-  include_once("assets/js/scriptAPI.js");
+  include ("views/reviews.php");
   include ("views/includes/footer.php");
   
 }

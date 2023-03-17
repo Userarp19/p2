@@ -501,3 +501,35 @@ margin: auto;
     margin-left: auto;
     margin-right: auto;
   }
+
+
+
+  /*------------------Rating--------------*/
+  
+
+  fieldset.rating {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  fieldset.rating label {
+    background-image: url('../icons/star.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-indent: -9999px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  fieldset.rating label:hover,
+  fieldset.rating label:hover ~ label,
+  fieldset.rating input:checked + label,
+  fieldset.rating input:checked + label ~ label {
+    background-image: url('../icons/star\ \(1\).png');
+  }
+  
