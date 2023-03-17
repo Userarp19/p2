@@ -24,6 +24,12 @@
   --color3: rgb(255, 255, 255);
   --color11: rgb(78, 0, 0,0,3);
 }
+.font1{
+font-family: trebuc;
+}
+.fontsize1{
+  font-size: 150%;
+  }
 .colorbtn{
   background-color: black;
 }
@@ -506,30 +512,73 @@ margin: auto;
 
   /*------------------Rating--------------*/
   
-
-  fieldset.rating {
-    border: none;
-    margin: 0;
-    padding: 0;
+   .rating-container {
+    margin-bottom: 20px;
   }
-  
-  fieldset.rating label {
-    background-image: url('../icons/star.png');
-    background-repeat: no-repeat;
+  .rate {
     display: inline-block;
-    width: 32px;
-    height: 32px;
-    text-indent: -9999px;
-    margin: 0;
-    padding: 0;
-    border: none;
+    position: relative;
+  }
+  .rate > input {
+    display: none;
+  }
+  .rate > label {
+    float: right;
+    color: #ddd6ca;
+    font-size: 32px;
+    margin-right: 5px;
+    margin-bottom: 0;
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
   }
-  
-  fieldset.rating label:hover,
-  fieldset.rating label:hover ~ label,
-  fieldset.rating input:checked + label,
-  fieldset.rating input:checked + label ~ label {
-    background-image: url('../icons/star\ \(1\).png');
+  .rate > label:before {
+    content: '★';
   }
-  
+  .rate > input:checked ~ label,
+  .rate > input:checked ~ label ~ label {
+    color: #EFA11A;
+  }
+  .rate > label:hover,
+  .rate > label:hover ~ label {
+    color: #C58716;
+  }
+  .rate > label:hover:before,
+  .rate > label:hover ~ label:before {
+    content: '★';
+  }
+  #comment {
+    display: block;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    resize: none;
+  }
+  input[type="submit"] {
+    font-family: "trebuc";
+    color: white;
+    font-size: medium;
+    text-align: center;
+    border-width: 3px;
+    border-color:rgb(255, 255, 255,0.89);
+    border-radius: 0%;
+    
+    height: 12;
+    
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+   
+    border: none;
+    border-radius: 3px;
+    color: #0e0101;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  input[type="submit"]:hover {
+    opacity: 0.7;
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+  }

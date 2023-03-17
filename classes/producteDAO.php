@@ -315,6 +315,22 @@ require_once ("utils/dataBase.php");
 
         }
 
+
+        public static function insertReview($revOrdId, $revUserId, $revStar, $revComment) {
+            $con = DataBase::connect();
+            $stmt = $con->prepare("INSERT INTO orderreview (revOrdId, revUserId, revStar, revComment, revDate) VALUES (?, ?, ?, ?, NOW())");
+            $stmt->bind_param("iiis", $revOrdId, $revUserId, $revStar, $revComment);
+            // Execute statement 
+            $stmt->execute();
+        
+            $Llist = 'Created Successfully';
+        
+            $con->close();
+        
+            return $Llist;
+        }
+        
+
         }
 
     
