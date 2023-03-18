@@ -1,10 +1,21 @@
+<section class=" mx-5 my-5 text-light font1  py-1 px-1 " style="background-color:#382020;">
+<div id="reviews" >  
+
+
+ 
+</div>
 
 
 
-<section class="bg-color1 my-5 mx-5 px-5 py-5 text-light font1" style="padding:auto; margin:auto;">
+<button id="review-form-toggle" class="button">Leave a Review</button>
+
+
+<div id="review-form-container" class=" mb-5 text-light font1" style="background-color:#4b0d0d;" >
+
+
 <form id="review-form">
   
-<label for="orderid" class="fontsize1 " style="margin-left:41.5%; ">Select an Order ID: </label>
+<label for="orderid" class="fontsize1 " style="margin-left:30%; ">Select an Order ID: </label>
 
         <select id="order-select" name="order-select" style=""></select>
 
@@ -37,4 +48,6 @@
 </div>
   
 </form>
+
+</div>
 </section>

@@ -519,7 +519,17 @@ public function checkreview(){
   require_once("utils/API/checkReview.php");
 
 }
+public function mostrarRatings(){
+  
+  
+  
+  
+ 
+  require_once ("classes/producteDAO.php");
+  
+  require_once("utils/API/mostrarRatings");
 
+}
 }
 
 

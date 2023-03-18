@@ -1,39 +1,40 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-$method = $_SERVER['REQUEST_METHOD'];
 
-if($method == "OPTIONS") {
-    die();
-}
 
-if($method == "GET") {
-    try {
-        $datosJSON2 = PRODUCTDAO::getRviewByID($_SESSION['user_id']);
-        $response2 = ['status' => 'success', 'data' => $datosJSON2];
-        header('Content-Type: application/json');
-        echo json_encode($response);
-    } catch (Exception $e) {
-        $response2 = ['status' => 'error', 'message' => $e->getMessage()];
-        header('Content-Type: application/json');
-        http_response_code(500);
-        echo json_encode($response2);
+
+// Check if the form was submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // Retrieve the review data from the POST request
+    $revUserId = $_POST['userID'];
+    $revOrdId = $_POST['orderID'];
+   
+    // Check if a review already exists for the given user ID and order ID
+    $existingReview = PRODUCTDAO::getRviewByID($revUserId, $revOrdId);
+    
+    if ($existingReview) {
+        // Return an error response indicating that the order has already been reviewed
+        $response = array(
+            'success' => false,
+            'message' => 'You have already reviewed or rated this order.'
+        );
+    } else {
+        // Return a success response indicating that the user can submit a new review
+        $response = array(
+            'success' => true,
+            'message' => 'Thank you for your review!'
+        );
     }
+  
+    // Set the response header to indicate that the content is JSON
+    header('Content-Type: application/json');
+
+    // Output the response as JSON
+    echo json_encode($response);
 }
 
-if($method == "POST") {
-    try {
-        $datosJSON2 = PRODUCTDAO::getRviewByID($_SESSION['user_id']);
-        $response2 = ['status' => 'success', 'data' => $datosJSON2];
-        header('Content-Type: application/json');
-        echo json_encode($response);
-    } catch (Exception $e) {
-        $response2 = ['status' => 'error', 'message' => $e->getMessage()];
-        header('Content-Type: application/json');
-        http_response_code(500);
-        echo json_encode($response2);
-    }
-}
+
+
+  
+?>

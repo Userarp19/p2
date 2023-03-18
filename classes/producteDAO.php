@@ -334,35 +334,56 @@ require_once ("utils/dataBase.php");
 
 
         
-        public static function getRviewByID($id){
+        public static function getRviewByID($revUserId, $revOrdId) {
             $con = DataBase::connect();
-            $stmt = $con->prepare("SELECT revOrdId, revUserId FROM orderreview WHERE revUserId=$id");
-            //Execute statement 
+            $stmt = $con->prepare("SELECT * FROM orderreview WHERE revUserId = ? AND revOrdId = ?");
+            $stmt->bind_param("ii", $revUserId, $revOrdId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $con->close();
+            return $row;
+        }
+       
+        public static function getALLRview() {
+            $con = DataBase::connect();
+            $stmt = $con->prepare("SELECT o.revOrdId, u.NOMBRE, o.revStar, o.revComment, o.revDate FROM orderreview as o INNER JOIN usuario as u ON o.revUserId= u.ID_USUARIO;" );
             $stmt->execute();
             $result=$stmt->get_result();
-
-            $review;
             
-           $a=0;
+            $reviews='';
+          
             while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
-               
-
-                   
-                $review[$a]['revOrdId']=$row['revOrdId'];
-                $review[$a]['revUserId']=$row['revUserId'];
-               
-                $a++;
-
+                $reviews='<div   style="margin-left:30%; border: 10px solid #4c1f1f; text-align:center; width:40%; height: auto; margin-top:2%; margin-bottom:0%;">';
+                $reviews.='<h4 class="font1">'.$row['NOMBRE'].'</h4>';
+                $reviews.='<p style="background-color:#692020; color white; width:400px; padding:4%; margin:auto;" class="font1" >'.$row['revComment'].'</p>';   
+                $reviews.='<div class="rate fontsize1">';
+                $reviews.='<h4 class="font1">'.$row['NOMBRE'].'</h4>';
+                if ($row['revStar']==1) {
+                    $reviews.= '<p>★☆☆☆☆</p>';
+                }elseif ($row['revStar']==2) {
+                    $reviews.= '<p>★★☆☆☆</p>';
+                }elseif ($row['revStar']==3) {
+                    $reviews.= '<p>★★★☆☆</p>';
+                }elseif ($row['revStar']==4) {
+                    $reviews.= '<p>★★★★☆</p>';
+                }elseif ($row['revStar']==5) {
+                    $reviews.= '<p>★★★★★</p>';
+                }
+                $reviews.= '<p>'.$row['revDate'].'</p>';
+                $reviews.=' </div>';
+                $reviews.=' </div></div><br>';
+    
+     
+   
+  
             }
-            return $review;
 
             $con->close();
+            return $reviews;
         }
-    
-    
-    
-    
     }
+    
 
        
 
