@@ -1,4 +1,14 @@
+
 <section class=" mx-5 my-5 text-light font1  py-1 px-1 " style="background-color:#382020;">
+<div>
+  <label for="sort" class="font1 fontsize1 " style="margin-left:30%; ">Sort by:</label>
+  
+  <select id="sort" onchange="sortReviews()">
+    <option value="low-to-high">Rating: Low to High</option>
+    <option value="high-to-low">Rating: High to Low</option>
+  </select>
+
+</div>
 <div id="reviews" >  
 
 

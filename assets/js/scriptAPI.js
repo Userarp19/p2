@@ -1,14 +1,41 @@
 
+/*function sortReviews() {
+  var select = document.getElementById("sort");
+  var selectedValue = select.options[select.selectedIndex].value;
+
+  // Send the selected value to PHP using AJAX
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      // Handle the response from PHP
+      console.log(this.responseText);
+    }
+  };
+  xhttp.open("GET", "http://primerentornofariat.com/p2/producto/mostrarRatings?sort=" + selectedValue, true);
+  xhttp.send();
+
+
+
+}*/
+
 
 
 fetch('http://primerentornofariat.com/p2/producto/mostrarRatings', { method:'get' })
-  .then(response => response.json())
-  .then(data => {
-    // guardar los pedidos en un letiable
-    const reviewsData = data;
-    document.getElementById("reviews").innerHTML = reviewsData;
-  })
-  .catch(error => console.error(error));
+.then(response => response.text())
+.then(data => {
+  const reviewsData = JSON.parse(data).data; // parse JSON and get HTML content
+  document.getElementById("reviews").innerHTML = reviewsData;
+})
+.catch(error => console.error(error));
+
+
+
+
+
+
+
+
+
 
 var formContainer = document.getElementById('review-form-container');
 var formToggle = document.getElementById('review-form-toggle');
@@ -21,7 +48,8 @@ formToggle.addEventListener('click', function() {
   }
 });
 
-  
+
+
 
 fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
   .then(response => response.json())
@@ -101,7 +129,7 @@ fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
                    rating.checked = false;
                    comment.value = '';
                    orderID.value = '';
-                   userID.value = '';
+                   
                  } else {
                    // Display an error message using notie.js
                    notie.alert({

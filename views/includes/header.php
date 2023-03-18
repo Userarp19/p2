@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
     <title>MF STEAKEHOUSE</title>
     <link rel="icon" type="image/x-icon" href=<?=base_url."assets/icons/favicon.svg"?>>
+    
 </head>
 <body class="backgroundMenu">
 <?php

@@ -527,7 +527,7 @@ public function mostrarRatings(){
  
   require_once ("classes/producteDAO.php");
   
-  require_once("utils/API/mostrarRatings");
+  require_once("utils/API/mostrarRatings.php");
 
 }
 }
