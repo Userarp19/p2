@@ -507,6 +507,19 @@ public function savereview(){
   require_once("utils/API/saveRatings.php");
 
 }
+
+public function checkreview(){
+  
+  
+  
+  
+ 
+  require_once ("classes/producteDAO.php");
+  
+  require_once("utils/API/checkReview.php");
+
+}
+
 }
 
 

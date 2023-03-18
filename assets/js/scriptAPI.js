@@ -1,4 +1,5 @@
-import notie from 'notie';
+
+
 
 
 
@@ -21,17 +22,42 @@ fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
 
 
   
-  
-  // resiver datos del form
+  // resivar datos del form
 document.getElementById('review-form').addEventListener('submit', function(event) {
   event.preventDefault();
   
-  // guardar los datos en letiables
-  let rating = document.querySelector('.rate input[name="rating"]:checked').value;
+  // guardar los datos en variables
+  let rating = document.querySelector('.rate input[name="rating"]:checked');
+  let comment = document.getElementById('comment');
+  let orderID = document.getElementById('order-select');
+  let userID = document.getElementById('user-id');
   
-  let comment = document.getElementById('comment').value;
-  let orderID = document.getElementById('order-select').value;
-  let userID = document.getElementById('user-id').value;
+  // Check if any field is left out
+  if (!rating || !comment.value || !orderID.value || !userID.value) {
+    let errorMsg;
+    
+    // Check which fields are left out and set the error message accordingly
+    if (!rating) {
+      errorMsg = 'Please select a rating.';
+    } else if (!comment.value) {
+      errorMsg = 'Please enter a comment.';
+    } else if (!orderID.value) {
+      errorMsg = 'Please select an order ID.';
+    } else if (!userID.value) {
+      errorMsg = 'Please enter a user ID.';
+    } else {
+      errorMsg = 'Please fill out all required fields.';
+    }
+    
+    // Display the error message using notie.js
+    notie.alert({
+      type: 'error',
+      text: errorMsg,
+      time: 2000
+    });
+    
+    return;
+  }
   
   // Create a new XMLHttpRequest object
   let xhr = new XMLHttpRequest();
@@ -51,11 +77,10 @@ document.getElementById('review-form').addEventListener('submit', function(event
           time: 2000
         });
         // Clear the form inputs
-        document.querySelector('.rate input[name="rating"]:checked').checked = false;
-
-        document.getElementById('comment').value = '';
-        document.getElementById('order-select').value= '';
-         document.getElementById('user-id').value= '';
+        rating.checked = false;
+        comment.value = '';
+        orderID.value = '';
+        userID.value = '';
       } else {
         // Display an error message using notie.js
         notie.alert({
@@ -68,5 +93,5 @@ document.getElementById('review-form').addEventListener('submit', function(event
   };
 
   // Send the POST request with the form data
-  xhr.send('rating=' + encodeURIComponent(rating) + '&comment=' + encodeURIComponent(comment)+ '&orderID=' + encodeURIComponent(orderID)+ '&userID=' + encodeURIComponent(userID));
+  xhr.send('rating=' + encodeURIComponent(rating.value) + '&comment=' + encodeURIComponent(comment.value)+ '&orderID=' + encodeURIComponent(orderID.value)+ '&userID=' + encodeURIComponent(userID.value));
 });

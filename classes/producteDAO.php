@@ -331,8 +331,39 @@ require_once ("utils/dataBase.php");
         }
         
 
-        }
 
+
+        
+        public static function getRviewByID($id){
+            $con = DataBase::connect();
+            $stmt = $con->prepare("SELECT revOrdId, revUserId FROM orderreview WHERE revUserId=$id");
+            //Execute statement 
+            $stmt->execute();
+            $result=$stmt->get_result();
+
+            $review;
+            
+           $a=0;
+            while($row = mysqli_fetch_array($result, MYSQLI_BOTH)){
+               
+
+                   
+                $review[$a]['revOrdId']=$row['revOrdId'];
+                $review[$a]['revUserId']=$row['revUserId'];
+               
+                $a++;
+
+            }
+            return $review;
+
+            $con->close();
+        }
     
+    
+    
+    
+    }
+
+       
 
 ?>
