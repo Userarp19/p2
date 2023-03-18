@@ -1,3 +1,9 @@
+import notie from 'notie';
+
+
+
+  
+
 fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
   .then(response => response.json())
   .then(data => {
@@ -14,8 +20,8 @@ fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
   .catch(error => console.error(error));
 
 
- 
-
+  
+  
   // resiver datos del form
 document.getElementById('review-form').addEventListener('submit', function(event) {
   event.preventDefault();

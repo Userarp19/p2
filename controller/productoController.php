@@ -504,8 +504,8 @@ public function savereview(){
  
   require_once ("classes/producteDAO.php");
   
-  require_once("utils/saveRatings.php");
-  
+  require_once("utils/API/saveRatings.php");
+
 }
 }
 

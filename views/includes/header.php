@@ -12,6 +12,7 @@
     <link href=<?=base_url."assets/css/full_estil29.css" ?> rel="stylesheet" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/notie@4.3.1/dist/notie.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
     <title>MF STEAKEHOUSE</title>
     <link rel="icon" type="image/x-icon" href=<?=base_url."assets/icons/favicon.svg"?>>
 </head>
