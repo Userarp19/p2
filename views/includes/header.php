@@ -9,13 +9,13 @@
     rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
-    <link href=<?=base_url."assets/css/full_estil30.css" ?> rel="stylesheet" type="text/css" media="screen">
+    <link href=<?=base_url."assets/css/full_estil31.css" ?> rel="stylesheet" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/notie@4.3.1/dist/notie.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
     <title>MF STEAKEHOUSE</title>
     <link rel="icon" type="image/x-icon" href=<?=base_url."assets/icons/favicon.svg"?>>
-    
+   <!-- <script src="<?=base_url.'assets/js/sort.js'?>"></script>-->
 </head>
 <body class="backgroundMenu">
 <?php
@@ -39,7 +39,7 @@
                 <a class="nav-link sizenv" href=<?=base_url."producto/menu"?>> MENU </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link sizenv" href="#"> ABOUT US </a>
+                <a class="nav-link sizenv" href=<?=base_url."producto/reviews"?>> REVIEWS </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link sizenv" href=<?=base_url."producto/promotion"?>> PROMOTIONS </a>
@@ -100,7 +100,7 @@
                 <a class="nav-link sizenvm" href=<?=base_url."producto/menu"?>>MENU</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link sizenvm" href="#">ABOUT US</a>
+                <a class="nav-link sizenvm" href=<?=base_url."producto/reviews"?>>REVIEWS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link sizenvm" href=<?=base_url."producto/promotion"?>>PROMOTIONS</a>

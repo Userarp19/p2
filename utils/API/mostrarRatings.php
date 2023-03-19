@@ -9,9 +9,9 @@ header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Conte
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 
-/*
-$sort = $_GET["sort"];
 
+//$sort = $_GET["sort"];
+/*
 // Handle the sorting based on the selected value
 if ($sort == "low-to-high") {
   // Sort by rating: low to high

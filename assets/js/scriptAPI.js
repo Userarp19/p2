@@ -1,22 +1,5 @@
 
-/*function sortReviews() {
-  var select = document.getElementById("sort");
-  var selectedValue = select.options[select.selectedIndex].value;
 
-  // Send the selected value to PHP using AJAX
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // Handle the response from PHP
-      console.log(this.responseText);
-    }
-  };
-  xhttp.open("GET", "http://primerentornofariat.com/p2/producto/mostrarRatings?sort=" + selectedValue, true);
-  xhttp.send();
-
-
-
-}*/
 
 
 
@@ -27,7 +10,6 @@ fetch('http://primerentornofariat.com/p2/producto/mostrarRatings', { method:'get
   document.getElementById("reviews").innerHTML = reviewsData;
 })
 .catch(error => console.error(error));
-
 
 
 
@@ -66,7 +48,6 @@ fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
   })
   .catch(error => console.error(error));
 
-
   document.getElementById('review-form').addEventListener('submit', function(event) {
     event.preventDefault();
   
@@ -78,87 +59,85 @@ fetch('http://primerentornofariat.com/p2/producto/api', { method:'get' })
   
     // Check if any field is left out
     if (!rating || !comment.value || !orderID.value || !userID.value) {
-    let errorMsg;
-    
-    // Check which fields are left out and set the error message accordingly
-    if (!rating) {
-      errorMsg = 'Please select a rating.';
-    } else if (!comment.value) {
-      errorMsg = 'Please enter a comment.';
-    } else if (!orderID.value) {
-      errorMsg = 'Please select an order ID.';
-    } else if (!userID.value) {
-      errorMsg = 'Please enter a user ID.';
-    } else {
-      errorMsg = 'Please fill out all required fields.';
-    }
-    
-    // Display the error message using notie.js
-    notie.alert({
-      type: 'error',
-      text: errorMsg,
-      time: 2000
-    });
-    
+      let errorMsg;
+      
+      // Check which fields are left out and set the error message accordingly
+      if (!rating) {
+        errorMsg = 'Please select a rating.';
+      } else if (!comment.value) {
+        errorMsg = 'Please enter a comment.';
+      } else if (!orderID.value) {
+        errorMsg = 'Please select an order ID.';
+      } else if (!userID.value) {
+        errorMsg = 'Please enter a user ID.';
+      } else {
+        errorMsg = 'Please fill out all required fields.';
+      }
+      
+      // Display the error message using notie.js
+      notie.alert({
+        type: 'error',
+        text: errorMsg,
+        time: 2000
+      });
+      
       return;
     }
   
-     // Check if the user has already reviewed or rated the order
-     let xhr1 = new XMLHttpRequest();
-     xhr1.open('POST', 'http://primerentornofariat.com/p2/producto/checkreview');
-     xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-     xhr1.onreadystatechange = function() {
-       if (xhr1.readyState === 4) {
-         if (xhr1.status === 200) {
-           let response = JSON.parse(xhr1.responseText);
-           if (response.success) {
-             // Save the new review
-             let xhr2 = new XMLHttpRequest();
-             xhr2.open('POST', 'http://primerentornofariat.com/p2/producto/savereview');
-             xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-             xhr2.onreadystatechange = function() {
-               if (xhr2.readyState === 4) {
-                 if (xhr2.status === 200) {
-                   // Display a success message using notie.js
-                   notie.alert({
-                     type: 'success',
-                     text: 'Thank you for your review!',
-                     time: 2000
-                   });
-                   // Clear the form inputs
-                   rating.checked = false;
-                   comment.value = '';
-                   orderID.value = '';
-                   
-                 } else {
-                   // Display an error message using notie.js
-                   notie.alert({
-                     type: 'error',
-                     text: 'Oops! Something went wrong. Please try again later.',
-                     time: 2000
-                   });
-                 }
-               }
-             };
-             xhr2.send('rating=' + encodeURIComponent(rating.value) + '&comment=' + encodeURIComponent(comment.value)+ '&orderID=' + encodeURIComponent(orderID.value)+ '&userID=' + encodeURIComponent(userID.value));
-           } else {
-             // Display an error message using notie.js
-             notie.alert({
-               type: 'error',
-               text: 'You have already reviewed or rated this order.',
-               time: 2000
-             });
-           }
-         } else {
-           // Display an error message using notie.js
-           notie.alert({
-             type: 'error',
-             text: 'Oops! Something went wrong. Please try again later.',
-             time: 2000
-           });
-         }
-       }
-     };
-     xhr1.send('userID=' + encodeURIComponent(userID.value) + '&orderID=' + encodeURIComponent(orderID.value));
-   });
-  
+    // Check if the user has already reviewed or rated the order
+    fetch('http://primerentornofariat.com/p2/producto/checkreview', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: 'userID=' + encodeURIComponent(userID.value) + '&orderID=' + encodeURIComponent(orderID.value)
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response.success) {
+        // Save the new review
+        fetch('http://primerentornofariat.com/p2/producto/savereview', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: 'rating=' + encodeURIComponent(rating.value) + '&comment=' + encodeURIComponent(comment.value) + '&orderID=' + encodeURIComponent(orderID.value) + '&userID=' + encodeURIComponent(userID.value)
+        })
+        .then(response => {
+          // Display a success message using notie.js
+          notie.alert({
+            type: 'success',
+            text: 'Thank you for your review!',
+            time: 2000
+          });
+          // Clear the form inputs
+          rating.checked = false;
+          comment.value = '';
+          orderID.value = '';
+        })
+        .catch(error => {
+          // Display an error message using notie.js
+          notie.alert({
+            type: 'error',
+            text: 'Oops! Something went wrong. Please try again later.',
+            time: 2000
+          });
+        });
+      } else {
+        // Display an error message using notie.js
+        notie.alert({
+          type: 'error',
+          text: 'You have already reviewed or rated this order.',
+          time: 2000
+        });
+      }
+    })
+    .catch(error => {
+      // Display an error message using notie.js
+      notie.alert({
+        type: 'error',
+        text: 'Oops! Something went wrong. Please try again later.',
+        time: 2000
+      });
+    });
+});

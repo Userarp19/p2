@@ -1,13 +1,18 @@
 
 <section class=" mx-5 my-5 text-light font1  py-1 px-1 " style="background-color:#382020;">
+
+<script>
+
+</script>
 <div>
-  <label for="sort" class="font1 fontsize1 " style="margin-left:30%; ">Sort by:</label>
+  <!-- <label for="sort" class="font1 fontsize1 " style="margin-left:30%; ">Sort by:</label>
   
   <select id="sort" onchange="sortReviews()">
     <option value="low-to-high">Rating: Low to High</option>
     <option value="high-to-low">Rating: High to Low</option>
-  </select>
+  </select>-->
 
+  <button id="review-form-toggle" class="button">Leave a Review</button>
 </div>
 <div id="reviews" >  
 
@@ -17,10 +22,18 @@
 
 
 
-<button id="review-form-toggle" class="button">Leave a Review</button>
+<?php
 
 
-<div id="review-form-container" class=" mb-5 text-light font1" style="background-color:#4b0d0d;" >
+if((!isset($_SESSION['user_id'])) and (!isset($_SESSION['user_name']))){?>
+  <div id="review-form-container" class=" mb-5 text-light font1" style="background-color:#4b0d0d; 
+  width:400px; height:400px; text-align:center; padding-right:7%; padding-top:10%;" >
+  <a  href="<?=base_url.'producto/loginRegistrar'?>" role="button">
+    <button type="button"  class="button">Log-in to Review your Orders</button>
+</a>
+  </div>
+  <?php }else {?>
+  <div id="review-form-container" class=" mb-5 text-light font1" style="background-color:#4b0d0d;" >
 
 
 <form id="review-form">
@@ -60,4 +73,8 @@
 </form>
 
 </div>
+<?php } ?>
+
+
 </section>
+<script src="<?=base_url.'assets/js/scriptAPI.js'?>" type="module"></script>

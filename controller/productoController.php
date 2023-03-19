@@ -479,7 +479,9 @@ public function reviews(){
   
   
   
-  require("utils/protection.php");
+  session_start();
+        
+        
   if(isset($_SESSION['compra'])){
     $orderCounts = count($_SESSION['compra']);
   }else{
@@ -517,6 +519,19 @@ public function checkreview(){
   require_once ("classes/producteDAO.php");
   
   require_once("utils/API/checkReview.php");
+
+}
+
+public function filterRatings(){
+  
+  
+  
+  
+ 
+  require_once ("classes/producteDAO.php");
+  
+ 
+  require_once("utils/API/filterReviews.php");
 
 }
 public function mostrarRatings(){

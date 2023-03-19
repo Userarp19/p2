@@ -617,3 +617,24 @@ left: 50%;
 transform: translate(-50%, -50%);
   }
   
+
+
+/*-----------video botton------*/
+.videobutton{
+  margin-top: 0%;
+  float: right;
+  margin-left: 0%;
+  margin-left: 10%;
+}
+
+
+#video_overlays {
+  position:absolute;
+  width:160px;
+  min-height:40px;
+  z-index:300000;
+  bottom:140px;
+
+  left: 350px;
+  text-align:center;
+}

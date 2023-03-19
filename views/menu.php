@@ -1,6 +1,13 @@
-
-
-<section class=" container-fluid  mx-0 pt-5 my-0">
+<div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 my-4 mx-3">
+            <select id="product-type" class="form-select" aria-label="Select product type">
+                <option value="main-dish" selected>Main dishes</option>
+                <option value="drink">Drinks</option>
+            </select>
+        </div>
+    </div>
+ 
+<section class=" container-fluid  mx-0 pt-5 my-0 product-list" data-product-type="main-dish" >
 <div class="row my-4 d-flex justify-content-center">
     <div class="bg-color1 mx-3 my-3 " style="width:24%; height:8px; ">. </div>
     <div class="bg-color1" style="width:34%;">
@@ -47,7 +54,7 @@ foreach($steaks as $stake){
 </section>
 
 
-<section class=" container-fluid mx-0 px-0 py-0 my-0">
+<section class=" container-fluid mx-0 px-0 py-0 my-0 product-list"  data-product-type="drink">
 <div class="row my-5 d-flex justify-content-center">
     <div class="bg-color1 mx-3 my-3 " style="width:24%; height:8px; ">. </div>
     <div class="bg-color1" style="width:35%;">
@@ -92,3 +99,4 @@ foreach($refreshes as $drink){
 </section>
 
 
+<script src="<?=base_url.'assets/js/filterProduct.js'?>"></script>

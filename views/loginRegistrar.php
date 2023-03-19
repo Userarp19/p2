@@ -70,20 +70,20 @@
 										
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-about-yourself">Phone Number</label>
-				                        	<input type="number" name="form-mobile"  class="form-mobile form-control" id="form-mobile">
+				                        	<input type="number" name="form-mobile"  class="form-mobile form-control" placeholder="Phone Number" id="form-mobile">
 				                        </div>
                                 <div class="form-group">
 				                        	<label class="sr-only" for="form-about-yourself">Address</label>
-				                        	<input type="text" name="form-Address"  class="form-Address form-control" id="form-mobile">
+				                        	<input type="text" name="form-Address"  class="form-Address form-control" placeholder="Address" id="form-mobile">
 				                        </div>
 
 										<div class="form-group">
 				                        	<label class="sr-only" for="form-email">Password</label>
-				                        	<input type="password" name="form-password-1"  class="form-email form-control" id="form-password-1">
+				                        	<input type="password" name="form-password-1" placeholder="Password" class="form-email form-control" id="form-password-1">
 				                        </div>
 										<div class="form-group">
 				                        	<label class="sr-only" for="form-email">Password 2</label>
-				                        	<input type="password" name="form-password-2"  class="form-email form-control" id="form-password-2">
+				                        	<input type="password" name="form-password-2" placeholder="Password" class="form-email form-control" id="form-password-2">
 				                        </div>
 
 				                        <button type="submit" class="btn text-light colorbtn HOVERBT mx-2 my-2 ">Sign me up!</button>
@@ -97,4 +97,5 @@
                 </div>
             </div>
             
+        </div>
         </div>
