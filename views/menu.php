@@ -1,7 +1,8 @@
 <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 my-4 mx-3">
             <select id="product-type" class="form-select" aria-label="Select product type">
-                <option value="main-dish" selected>Main dishes</option>
+            <option value="Default" selected>Default</option>
+                <option value="main-dish">Main dishes</option>
                 <option value="drink">Drinks</option>
             </select>
         </div>

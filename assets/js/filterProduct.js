@@ -12,6 +12,12 @@ productTypeSelect.addEventListener('change', (event) => {
     } else {
       productList.removeAttribute('hidden');
     }
+    if (selectedProductType=='Default') {
+      productList.removeAttribute('hidden');
+    }
   });
 });
+
+
+
 
