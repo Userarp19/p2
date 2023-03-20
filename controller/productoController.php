@@ -75,54 +75,65 @@ class productoController{
     }
 
 
-public function cockies(){
+    public function cockies(){
        
-    include_once("classes/drinks.php");
-    include_once("classes/loadDishes.php");
-    include_once("classes/mainDishes.php");
-    include_once("classes/producte.php");
-    include_once("utils/calculatetotalprice.php");
-    session_start();
-    if(isset($_SESSION['compra'])){
-        $orderCounts = count($_SESSION['compra']);
-      }else{
-        $orderCounts = '';
-      }
-
-      //FINISHING THE ORDER AND SAVIN IT IN THE COCKIES//
-
-      $valorcockie='';
-if(!isset($_COOKIE["ENDOrder"])) {
-
-    setcookie("ENDOrder", "", time() + (86400 * 1), "/");  
-
-    
-    
-        foreach ($_SESSION['compra'] as $order) {
-            
-            $cockieValue .= '<p>Dishe Name:  '.$order->getName().', <br>Quantity: '.$order->getQuantity().'<br>Price: '.$order->calculatePrice().'.</p><br>';
-    
+      include_once("classes/drinks.php");
+      include_once("classes/loadDishes.php");
+      include_once("classes/mainDishes.php");
+      include_once("classes/producte.php");
+      include_once("utils/calculatetotalprice.php");
+      session_start();
+      if(isset($_SESSION['compra'])){
+          $orderCounts = count($_SESSION['compra']);
+        }else{
+          $orderCounts = '';
         }
-        $cockieValue .= '<p ><b>Total Price: </b> '.CalculateTotalPrice::calculateTPrice($_SESSION['compra']).'€</p><br>';
-       
-        setcookie("ENDOrder", "$cockieValue", time() + (86400 * 1), "/");
-        
-        session_destroy();
-  }
-   
-  if(isset($_COOKIE["ENDOrder"])) {
-    $valorcockie=$_COOKIE["ENDOrder"];
- 
-  }
   
-//FINISHING THE ORDER AND SAVIN IT IN THE COCKIES//
+        //FINISHING THE ORDER AND SAVIN IT IN THE COCKIES//
   
-    require_once 'views/includes/header.php';
-    require_once 'views/cockies.php';
-    require_once 'views/includes/footer.php';
-    
+        $valorcockie='';
+        $cockieValue='';
+        $valorQR='';
+        $cockQR='';
+        if ($orderCounts>0){
+  
+      setcookie("ENDOrder", "", time() + (86400 * 1), "/");  
+  
       
-}
+      
+          foreach ($_SESSION['compra'] as $order) {
+              
+              $cockieValue .= '<p>Dishe Name:  '.$order->getName().', <br>Quantity: '.$order->getQuantity().'<br>Price: '.$order->calculatePrice().'.</p><br>';
+              $valorQR .= ' Dishe Name:  '.$order->getName().', Quantity: '.$order->getQuantity().' Price: '.$order->calculatePrice().' ';
+          }
+          $cockieValue .= '<p ><b>Total Price: </b> '.CalculateTotalPrice::calculateTPrice($_SESSION['compra']).'€</p><br>';
+          $valorQR  .= ' Total Price:  '.CalculateTotalPrice::calculateTPrice($_SESSION['compra']).'€ ';
+          setcookie("ENDOrder", "$cockieValue", time() + (86400 * 1), "/");
+          setcookie("QR", "$valorQR", time() + (86400 * 1), "/");
+          unset($_SESSION['compra']);
+    }
+     
+    if(isset($_COOKIE["ENDOrder"])) {
+      $valorcockie=$_COOKIE["ENDOrder"];
+      
+    }
+    if(isset($_COOKIE["QR"])) {
+     
+      $cockQR=$_COOKIE["QR"];
+    }
+
+    
+  //FINISHING THE ORDER AND SAVIN IT IN THE COCKIES//
+    
+      require_once 'views/includes/header.php';
+      require_once 'views/cockies.php';
+      require_once 'views/includes/footer.php';
+     
+      
+        
+  }
+  
+  
 
 public static function privacyPolicy(){
         
